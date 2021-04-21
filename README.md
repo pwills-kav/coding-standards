@@ -7,9 +7,9 @@ The purpose of this repository is to provide code snippets/examples for various 
 
 The intent of this is to provide a base class example of how to create a test data factory and use it across various test classes. Please refer to methods from Test Data Factory to create records of specific object or custom setting.
 
-The test methods in the TestDataFactory will have the bare minimum fields populated, which are required to insert a record for a particular Object/Custom Setting. This will change with every Organization, so this should only be treated as a reference and changes should be made as per the Organization one is working on.
+The test methods in the class, **TestDataFactory** will have the bare minimum fields populated, which are required to insert a record for a particular Object/Custom Setting. This will change with every Organization, so this should only be treated as a reference and changes should be made as per the Organization one is working on.
 
-For each method in the TestDataFactory.cls where object/custom setting records are returned, a Boolean field called, "commitRecords" should be present in the methods as a parameter. The purpose of this variable is to insert/not insert the record in the test data factory depending on if the value is true/false, before it's returned to the calling respective Test Class. This allows developers to change the value of the records, if required, before inserting the records. 
+For each method in the **TestDataFactory.cls** where object/custom setting records are returned, a Boolean field called, **commitRecords** should be present in the methods as a parameter. The purpose of this variable is to insert/not insert the record in the test data factory depending on if the value is true/false, before it's returned to the calling respective Test Class. This allows developers to change the value of the records, if required, before inserting the records. 
 
 In order to create a method for a new record, the method should have paramters like:
 
