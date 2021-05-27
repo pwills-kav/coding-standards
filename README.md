@@ -8,7 +8,9 @@ Overview of common roles in code reviews and coding standards. Please update the
 This is an overview of Sansotti’s proposed Code Review Checklist.  There are 3 parties involved in the code review process:
 
 -Developer
+
 -Reviewer
+
 -Release Manager
 
 In general the code review should NEVER take more than 30 minutes, per story. If the change does require more time, then break the review into smaller components. Typically the review will be done via screen share (as we have a geographically diverse team), however, as our process becomes more mature the developer and reviewer can do it asynchronously. In certain cases, code review can take more time - depending on the complexity of the story and number of components involved.
