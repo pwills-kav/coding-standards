@@ -114,18 +114,21 @@ Examples:
 
 ### Trigger Names
 Should be named after sObject and and appended with Trigger. Examples:
+
     AccountTrigger
     ContactTrigger
 
 ### Variable Names
 Variable names should be words. They should be clear and self explanatory. Avoid acronyms. Avoid redundancies. 
 Avoid: 
+
     String nameString
     Integer countInteger
 Specifying the variable type in the variable name does not add value. 
 
 ### Map Names
 Map names should be “valueByKey”. For example: 
+
     Map<Id, Account> accountById
     Map<String, Account> accountByName
     Map<String, Account> accountByExternalId
@@ -133,6 +136,7 @@ Map names should be “valueByKey”. For example:
 ### Method Names
 Method names should be verbs. They should be self explanatory and should avoid acronyms.
 do, is, set, get, query, run are all acceptable verbs to start a method name with. For example:
+
     setAccountName
     isAccountNamePopulated
     doQuarterlyCalculations
@@ -157,6 +161,7 @@ Constructors
 Static Methods (first public, then private)
 Instance Methods
 Inner Classes
+
     /*
     * @author MyNamegoesHere
     * @version versionX.x.x
@@ -202,6 +207,7 @@ Database queries should be as narrow in scope as possible. However, queries into
 
 ## Lazy Loading Queries
 Queries that are only queried when needed (lazy loading) are preferrable to always querying. Example: 
+
     for(Account account: accounts) {
         if(account.Name == ‘’ && account.ParentId != null) {
             account.Name = accountById.get(account.Parent.Id).Name;
@@ -221,6 +227,7 @@ Selector layers are great! Highly recommend using a single class to select recor
 ## DML
 DML for generic sObject lists should always be sorted first. 
 Example: 
+
     List<sObject> sobjects = new List<sObject>();
     sobjects.sort(); 	//MUST HAVE BEFORE DML
     insert sobjects;
@@ -233,15 +240,19 @@ All DML should be wrapped in a try catch.
 
 ### Future
 Should always check to see if running in future or batch context already before invoking a future thread.
+
     if(!System.isBatch() && !System.isFuture()) {
         runFuture();
     }
+    
 ### Batch
 Should always check to see if running in future or batch context already before invoking a batch thread.
 Should not invoke a batch job from a trigger. 
+
     if(!System.isBatch() && !System.isFuture()) {
         runBatch();
     }
+
 ### Queueable
 Should avoid queuables. It is the asynchronous choice of the last result.
 Platform Events
