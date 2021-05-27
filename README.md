@@ -435,7 +435,7 @@ Note: if statements should always use braces {}. Avoid the following error-prone
     if (condition) //AVOID! THIS OMITS THE BRACES {}!
         statements;
         
-        ### for Loop
+### for Loop
 
 A for loop should have the following format:
         
@@ -531,7 +531,7 @@ There should be as little logic in your code as possible. Reusing code in severa
           return new Map<Id,Contact>([Select Id From Contact]);
       }
   
-  == Do not put queries in loops:
+### Do not put queries in loops:
   
     One of the most stringent governor limits is a SOQL query limit of 100 queries in a transaction.
     To avoid this simply do not put queries in for loops.
@@ -564,13 +564,13 @@ There should be as little logic in your code as possible. Reusing code in severa
         }
     }
     
-    ### Use maps for queries:
+### Use maps for queries:
   
 This is a fundamental technique and trick to use in order to make SOQL queries, DML transactions, and Apex triggers more efficient. You can get a Map from a list, without a For Loop. For exampe:
     
     Map<Id, sObject> myAwesomeMap = new Map<Id,sObject>(List of sObjects or SOQL Query);
     
-    ### Use relationships to reduce queries
+### Use relationships to reduce queries
   
 SOQL allows you to query for parent/children record information. 
     
@@ -593,7 +593,7 @@ SOQL allows you to query for parent/children record information.
         }
     update accountsToUpdate;
     
-    ### Do not put DML in loops:
+### Do not put DML in loops:
 
 DML means any insert, update, delete, undelete, merge, convertLead transaction. To avoid governor limits
 simply by not putting DML in for loops, and generally speaking, make sure you're acting on multiple records.
@@ -613,11 +613,11 @@ for managing execution order, and delegate all else to a separate Apex class suc
 Knowing when to use declarative features rather than jumping straight into an Apex or Visualforce solution
 will greatly help reduce the complexity of the code base, and improve performance and maintenance.
     
-    ### Write test code:
+### Write test code:
   
 You should always aim for 100% code coverage. The goal is get as high a code coverage as is sensible. 
     
-    ### Avoid hardcoding IDs:
+### Avoid hardcoding IDs:
   
 It is paramount to avoid hardcoding IDs in the Apex code. By ensuring no IDs are stored in the Apex code,
 you are making the code much more dynamic and flexible, allowing for safe deployments between environments.
