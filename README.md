@@ -109,36 +109,37 @@ In order to create a method for a new record, the method should have paramters l
 ### Class Names
 Class names should be nouns in CamelCase with the first letter of each word capitalized. Try to keep class names simple and descriptive. Use whole words, avoid acronyms and abbreviations unless it is widely known (e.g. URL, HTML). 
 Examples:
-public class ImageSprite { }
-public class AccountTriggerHandler { }
+    public class ImageSprite { }
+    public class AccountTriggerHandler { }
 
 ### Trigger Names
 Should be named after sObject and and appended with Trigger. Examples:
-AccountTrigger
-ContactTrigger
+    AccountTrigger
+    ContactTrigger
 
 ### Variable Names
 Variable names should be words. They should be clear and self explanatory. Avoid acronyms. Avoid redundancies. 
 Avoid: 
-String nameString
-Integer countInteger
+    String nameString
+    Integer countInteger
 Specifying the variable type in the variable name does not add value. 
 
 ### Map Names
 Map names should be “valueByKey”. For example: 
-Map<Id, Account> accountById
-Map<String, Account> accountByName
-Map<String, Account> accountByExternalId
+    Map<Id, Account> accountById
+    Map<String, Account> accountByName
+    Map<String, Account> accountByExternalId
 
 ### Method Names
 Method names should be verbs. They should be self explanatory and should avoid acronyms.
 do, is, set, get, query, run are all acceptable verbs to start a method name with. For example:
-setAccountName
-isAccountNamePopulated
-doQuarterlyCalculations
-queryAccounts
-getAccountName
-Parameter Names
+    setAccountName
+    isAccountNamePopulated
+    doQuarterlyCalculations
+    queryAccounts
+    getAccountName
+
+### Parameter Names
 
 ## Design 
 # Method Design
@@ -156,22 +157,22 @@ Constructors
 Static Methods (first public, then private)
 Instance Methods
 Inner Classes
-/*
-* @author MyNamegoesHere
-* @version versionX.x.x
-* @description DESCRIPTION_GOES_HERE
-*/
-public class YourClass {
-/* Instance Variables */
-/* Static Variables */
-/* Constants */
-/* Static Initializers */
-/* Factory Methods */
-/* Constructors */
-/* Instance Methods */
-/* Static Methods */
-/* Inner Classes */
-}
+    /*
+    * @author MyNamegoesHere
+    * @version versionX.x.x
+    * @description DESCRIPTION_GOES_HERE
+    */
+    public class YourClass {
+    /* Instance Variables */
+    /* Static Variables */
+    /* Constants */
+    /* Static Initializers */
+    /* Factory Methods */
+    /* Constructors */
+    /* Instance Methods */
+    /* Static Methods */
+    /* Inner Classes */
+    }
 
 ## Comments
 ### Header Comments
@@ -180,38 +181,39 @@ public class YourClass {
 ### Trailing Comments
 Very short comments can appear on the same line as the code they describe, but should be shifted far enough to separate them from the statements. If more than one short comment appears in a chunk of code, they should all be indented to the same tab setting.
 
-if(accounts.size() == 1) {
-	isSingle = true;		//single account exist
-} else if(accounts.size() > 1) {
-	isMultiple = true;		//multiple accounts exist
-}
+    if(accounts.size() == 1) {
+    	isSingle = true;		//single account exist
+    } else if(accounts.size() > 1) {
+    	isMultiple = true;		//multiple accounts exist
+    }
 
 ## Declarations
 One declaration per line is recommended.
-Integer numberOfAccountsFound;
-DateTime earliestAccountCreatedDate;
-DateTime lastAccountCreatedDate;
+    Integer numberOfAccountsFound;
+    DateTime earliestAccountCreatedDate;
+    DateTime lastAccountCreatedDate;
 
 Is preferable to 
-	Integer numberOfAccountsFound;
-	DateTime earliestAccountCreatedDate, lastAccountCreatedDate; //WRONG
+    Integer numberOfAccountsFound;
+    DateTime earliestAccountCreatedDate, lastAccountCreatedDate; //WRONG
 
 ## SOQL Design Considerations
 Database queries should be as narrow in scope as possible. However, queries into a single sObject should be performed once per sObject. If multiple methods need to access the same sObject with different filters, one query should be used and each method should filter the records needed. 
 
 ## Lazy Loading Queries
 Queries that are only queried when needed (lazy loading) are preferrable to always querying. Example: 
-for(Account account: accounts) {
-if(account.Name == ‘’ && account.ParentId != null) {
-	account.Name = accountById.get(account.Parent.Id).Name;
-}
-}
-public Map<Id, Account> accountById {get {
-	if(accountById == null) {
-		accountById = new Map<Id, Account>([SELECT Id FROM Account WHERE Id IN: accounts]);
-}
-return accountById;
-} set;}
+    for(Account account: accounts) {
+        if(account.Name == ‘’ && account.ParentId != null) {
+            account.Name = accountById.get(account.Parent.Id).Name;
+        }
+    }
+    public Map<Id, Account> accountById {get {
+        if(accountById == null) {
+            accountById = new Map<Id, Account>([SELECT Id FROM Account WHERE Id IN: accounts]);
+        }
+    }
+    return accountById;
+    } set;}
 
 ## Selector Layers
 Selector layers are great! Highly recommend using a single class to select records from the database as needed. Drives consistencies and ensures all relevant fields are grabbed each time they are queried.
@@ -219,9 +221,9 @@ Selector layers are great! Highly recommend using a single class to select recor
 ## DML
 DML for generic sObject lists should always be sorted first. 
 Example: 
-List<sObject> sobjects = new List<sObject>();
-sobjects.sort(); 	//MUST HAVE BEFORE DML
-insert sobjects;
+    List<sObject> sobjects = new List<sObject>();
+    sobjects.sort(); 	//MUST HAVE BEFORE DML
+    insert sobjects;
 
 Should avoid multiple DMLs on same sObject type. Combine all DML when possible. 
 
@@ -231,15 +233,15 @@ All DML should be wrapped in a try catch.
 
 ### Future
 Should always check to see if running in future or batch context already before invoking a future thread.
-if(!System.isBatch() && !System.isFuture()) {
-	runFuture();
-}
+    if(!System.isBatch() && !System.isFuture()) {
+        runFuture();
+    }
 ### Batch
 Should always check to see if running in future or batch context already before invoking a batch thread.
 Should not invoke a batch job from a trigger. 
-if(!System.isBatch() && !System.isFuture()) {
-	runBatch();
-}
+    if(!System.isBatch() && !System.isFuture()) {
+        runBatch();
+    }
 ### Queueable
 Should avoid queuables. It is the asynchronous choice of the last result.
 Platform Events
