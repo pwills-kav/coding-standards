@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tag__c</fullName>
+    <externalId>false</externalId>
+    <label>Tag</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FinWise</fullName>
+                <default>false</default>
+                <label>FinWise</label>
+            </value>
+            <value>
+                <fullName>NACHA</fullName>
+                <default>false</default>
+                <label>NACHA</label>
+            </value>
+            <value>
+                <fullName>NDR</fullName>
+                <default>false</default>
+                <label>NDR</label>
+            </value>
+            <value>
+                <fullName>GIACT</fullName>
+                <default>false</default>
+                <label>GIACT</label>
+            </value>
+            <value>
+                <fullName>IDA</fullName>
+                <default>false</default>
+                <label>IDA</label>
+            </value>
+            <value>
+                <fullName>docs</fullName>
+                <default>false</default>
+                <label>docs</label>
+            </value>
+            <value>
+                <fullName>Doc Upload</fullName>
+                <default>false</default>
+                <label>Doc Upload</label>
+            </value>
+            <value>
+                <fullName>Emailage</fullName>
+                <default>false</default>
+                <label>Emailage</label>
+            </value>
+            <value>
+                <fullName>Web UI</fullName>
+                <default>false</default>
+                <label>Web UI</label>
+            </value>
+            <value>
+                <fullName>CreditAPI</fullName>
+                <default>false</default>
+                <label>CreditAPI</label>
+            </value>
+            <value>
+                <fullName>TWN</fullName>
+                <default>false</default>
+                <label>TWN</label>
+            </value>
+            <value>
+                <fullName>Cloudinary</fullName>
+                <default>false</default>
+                <label>Cloudinary</label>
+            </value>
+            <value>
+                <fullName>AWS FTP</fullName>
+                <default>false</default>
+                <label>AWS FTP</label>
+            </value>
+            <value>
+                <fullName>Experian</fullName>
+                <default>false</default>
+                <label>Experian</label>
+            </value>
+            <value>
+                <fullName>TransUnion</fullName>
+                <default>false</default>
+                <label>TransUnion</label>
+            </value>
+            <value>
+                <fullName>TwilioSF</fullName>
+                <default>false</default>
+                <label>TwilioSF</label>
+            </value>
+            <value>
+                <fullName>BatchApexErrorEvent</fullName>
+                <default>false</default>
+                <label>BatchApexErrorEvent</label>
+            </value>
+            <value>
+                <fullName>OutboundEmail</fullName>
+                <default>false</default>
+                <label>OutboundEmail</label>
+            </value>
+            <value>
+                <fullName>FullStory</fullName>
+                <default>false</default>
+                <label>FullStory</label>
+            </value>
+            <value>
+                <fullName>Personalized Video</fullName>
+                <default>false</default>
+                <label>Personalized Video</label>
+            </value>
+            <value>
+                <fullName>Marketing Cloud Emails</fullName>
+                <default>false</default>
+                <label>Marketing Cloud Emails</label>
+            </value>
+            <value>
+                <fullName>Statement</fullName>
+                <default>false</default>
+                <label>Statement</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
