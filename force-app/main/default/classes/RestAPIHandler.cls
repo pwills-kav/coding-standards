@@ -29,6 +29,10 @@ public abstract class RestAPIHandler {
     // POST method - Will need to be implemented by the Child Class
     private abstract void processPOST();
 
+    protected virtual void processPUTWithoutRollback() {
+
+    }
+
     // DELETE - This is an example, where DELETE is not being implemented. If this is needed, declare it as abstract method 
     // if it will be used for all implementations, otherwise - just override the function in the Child Class, and let it be virtual.
     protected virtual void processDELETE() {
@@ -47,15 +51,17 @@ public abstract class RestAPIHandler {
 
             switch on request.httpMethod {
                 when 'GET' {
-                    snapshot = Database.setSavepoint();
+                    //snapshot = Database.setSavepoint();
                     processGET();
                 } when 'POST' {
-                    snapshot = Database.setSavepoint();
+                    //snapshot = Database.setSavepoint();
                     processPOST();
                 } when 'DELETE' {
-                    snapshot = Database.setSavepoint();
+                    //snapshot = Database.setSavepoint();
                     processDELETE();
-                } when else {       //If PUT is needed, add -> when 'PUT'.
+                } when 'PUT' {
+                    processPUTWithoutRollback();
+                } when else {       
                     response = new RestAPIResponse(405, 'METHOD_NOT_ALLOWED', 'METHOD_NOT_ALLOWED');
                 }
             }
@@ -115,6 +121,10 @@ public abstract class RestAPIHandler {
 
         apiLog = (new APILogUtility('Rest API Framework')).apiLogRecord;    //Provide name of Functionality you want to log, in the APILogUtility() method
 
+    }
+
+    protected void initializeSavePoint() {
+        snapshot = Database.setSavepoint();
     }
 
     private void clearDanglingLookups() {
@@ -303,6 +313,18 @@ public abstract class RestAPIHandler {
     public virtual class ValidationException extends RestAPIException {
         public override String getErrorType() {
             return 'VALIDATION_ERROR';
+        }
+        public override String getErrorMessage() {
+            return this.getMessage();
+        }
+        public override Integer getResponseCode() {
+            return 400;
+        }
+    }
+
+    public class UnexpectedException extends RestAPIException {
+        public override String getErrorType() {
+            return 'UNEXPECTED_ERROR';
         }
         public override String getErrorMessage() {
             return this.getMessage();

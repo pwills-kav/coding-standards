@@ -188,4 +188,14 @@ public without sharing class APILogUtility {
         return transLimits;
     }
 
+    public static API_Log__c populateApiLogRequest(API_Log__c log, String endpoint, String method, Integer timeout, Object reqBody, Map<String, String> requestHeader, Map<String, String> urlParamsMap){
+        log.Request_Method__c = method;
+        log.Request_URI__c = endpoint;
+        log.Request_Headers__c = JSON.serializePretty(requestHeader);		//TO DO - write a method to remove sensitive information from the header.
+        log.Request_Body__c = reqBody?.toString().left(MAX_LEN_REQUEST_BODY);
+        log.Request_Params__c = String.valueOf(urlParamsMap);
+
+        return log;
+    }
+
 }
